@@ -21,6 +21,16 @@ public class GraphEdge
         return value;
     }
 
+    public void setVisited()
+    {
+        visited = true;
+    }
+
+    public void clearVisited()
+    {
+        visited = false;
+    }
+
     public boolean getVisited()
     {
         return visited;

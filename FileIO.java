@@ -11,6 +11,8 @@ public class FileIO
             BufferedReader br = new BufferedReader(rdr);
             String line = null;
             String[] lineSplit = null;
+            GraphNode node1 = null;
+            GraphNode node2 = null;
 
             line = br.readLine();
             lineSplit = line.split(" ");
@@ -18,16 +20,22 @@ public class FileIO
             {
                 lineSplit = line.split(" ");
 
-                GraphNode node1 = new GraphNode(lineSplit[0], lineSplit[0]);
-                GraphNode node2 = new GraphNode(lineSplit[1], lineSplit[1]);
-
-                if(lineSplit.length == 2)
+                if(lineSplit.length == 1)
                 {
-                    graph.addVertex(node1, node2 , 1);
+                    node1 = new GraphNode(lineSplit[0], lineSplit[0]);
+                    graph.addVertex(node1);
+                }
+                else if(lineSplit.length == 2)
+                {
+                    node1 = new GraphNode(lineSplit[0], lineSplit[0]);
+                    node2 = new GraphNode(lineSplit[1], lineSplit[1]);
+                    graph.addAdjacency(node1, node2 , 100);
                 }
                 else if(lineSplit.length == 3)
                 {
-                    graph.addVertex(node1, node2 , Integer.parseInt(lineSplit[2]));
+                    node1 = new GraphNode(lineSplit[0], lineSplit[0]);
+                    node2 = new GraphNode(lineSplit[1], lineSplit[1]);
+                    graph.addAdjacency(node1, node2 , Integer.parseInt(lineSplit[2]));
                 }
                 else
                 {
@@ -35,6 +43,8 @@ public class FileIO
                 }
                 line = br.readLine();
             }
+
+            fis.close();
         }
         catch(IOException e)
         {
